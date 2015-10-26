@@ -3,15 +3,12 @@
 
 #include "rubi.h"
 
-/***** dynASM ******/
 #include <stddef.h>
-
 
 // for other files
 extern void* jit_buf;
 extern size_t jit_sz;
 extern int npc;
-/*******************/
 
 typedef struct {
     int address, args, espBgn;

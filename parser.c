@@ -6,9 +6,7 @@
 
 #include "parser.h"
 #include "expr.h"
-//#include "asm.h"
 
-/********************************** dynASM ******************************************/
 #include "luajit-2.0/dynasm/dasm_proto.h"
 #include "luajit-2.0/dynasm/dasm_x86.h"
 
@@ -56,7 +54,6 @@ void* jit_finalize() {
 #endif
     return jit_buf;
 }
-/**********************************************************************************/
 
 struct {
     Variable var[0xFF];

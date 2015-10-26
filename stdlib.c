@@ -1,6 +1,5 @@
 #include <string.h>
 #include "expr.h"
-//#include "asm.h"
 
 typedef struct {
     char *name;

@@ -4,7 +4,6 @@
 
 #include "expr.h"
 #include "rubi.h"
-//#include "asm.h"
 #include "parser.h"
 
 extern int make_stdfunc(char *);
