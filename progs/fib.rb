@@ -5,5 +5,5 @@ def fib(n)
 		fib(n - 1) + fib(n - 2)
 	end
 end
-
-puts fib(30)
+fib(30)
+#puts fib(30)

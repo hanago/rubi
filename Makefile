@@ -16,5 +16,13 @@ parser.o: parser.h parser.c asm.h
 stdlib.o: stdlib.c asm.h expr.h
 	$(C) -c stdlib.c
 
+run: rubi
+	@ echo "fib(30):"
+	@perf stat --repeat 5 -e cycles,instructions,cache-misses ./rubi ./progs/fib.rb
+	@ echo "primetable:"
+	@perf stat --repeat 5 -e cycles,instructions,cache-misses ./rubi ./progs/primetable.rb
+	@ echo "pi:"
+	@perf stat --repeat 5 -e cycles,instructions,cache-misses ./rubi ./progs/pi.rb
+
 clean:
 	$(RM) a.out rubi *.o *~ text
