@@ -1,20 +1,22 @@
 CFLAGS = -Wall -m32 -mstackrealign -std=gnu99 -O2
 C = $(CC) $(CFLAGS)
 
-rubi: engine.o expr.o parser.o stdlib.o
+rubi: engine.o codegen.o
 	$(C) -o $@ $^
 
-engine.o: rubi.h engine.c
-	$(C) -c engine.c
+luajit-2.0/src/host/minilua.c:
+	git clone https://github.com/LuaDist/luajit
+	mv ./luajit ./luajit-2.0
 
-expr.o: expr.h expr.c asm.h
-	$(C) -c expr.c
+minilua: luajit-2.0/src/host/minilua.c
+	$(CC) -Wall -std=gnu99 -O2 -o $@ $< -lm
 
-parser.o: parser.h parser.c asm.h
-	$(C) -c parser.c
+engine.o: engine.c rubi.h
+	$(C) -o $@ -c engine.c
 
-stdlib.o: stdlib.c asm.h expr.h
-	$(C) -c stdlib.c
+codegen.o: parser.h parser.c expr.c stdlib.c minilua
+	cat parser.c expr.c stdlib.c | ./minilua luajit-2.0/dynasm/dynasm.lua -o codegen.c -
+	$(C) -o $@ -c codegen.c
 
 run: rubi
 	@ echo "fib(30):"
@@ -25,4 +27,4 @@ run: rubi
 	@perf stat --repeat 5 -e cycles,instructions,cache-misses ./rubi ./progs/pi.rb
 
 clean:
-	$(RM) a.out rubi *.o *~ text
+	$(RM) a.out rubi minilua *.o *~ text codegen.c

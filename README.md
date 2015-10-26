@@ -1,3 +1,5 @@
+This is a code review of https://github.com/suhorng/rubi
+
 Rubi
 ====
 Rubi is a high-level, high-performance script programming language, with syntax that is familiar to users of Ruby. Rubi is implemented via just-in-time compilation.
@@ -82,6 +84,11 @@ Quick Start
 * Install development packages for Ubuntu Linux Ubuntu 14.04 LTS:
 ```
 sudo apt-get install gcc-multilib libc6-dev-i386
+```
+* Install luajit-2.0:
+```
+git clone http://luajit.org/git/luajit-2.0.git
+
 ```
 * Build and run
 ```
