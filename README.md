@@ -1,4 +1,4 @@
-This is a code review of https://github.com/suhorng/rubi
+This is a code review of https://github.com/suhorng/rubi/tree/dynasm-syntax
 
 Rubi
 ====
@@ -84,10 +84,6 @@ Quick Start
 * Install development packages for Ubuntu Linux Ubuntu 14.04 LTS:
 ```
 sudo apt-get install gcc-multilib libc6-dev-i386
-```
-* Install luajit-2.0:
-```
-git clone http://luajit.org/git/luajit-2.0.git
 
 ```
 * Build and run
